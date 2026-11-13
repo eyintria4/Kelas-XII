@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>index</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#fff0f6;--card:#fff;--ink:#3b1a2a;--mut:#8a5a70;--pk:#e91e8c;--pk2:#ff6fb5;--soft:#ffd6e8;--line:#f7bcd6;--warn:#ffb300;--ok:#1faa6b;--bad:#e5484d;--none:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#2a1020;--card:#3a1a2e;--ink:#ffe6f1;--mut:#e0a8c4;--soft:#552741;--line:#7a3a5c;--none:#3a1a2e}}
+:root[data-theme="dark"]{--bg:#2a1020;--card:#3a1a2e;--ink:#ffe6f1;--mut:#e0a8c4;--soft:#552741;--line:#7a3a5c;--none:#3a1a2e}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Poppins","Segoe UI",system-ui,sans-serif;line-height:1.55}
+.wrap{max-width:980px;margin:0 auto;padding:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 8px 24px rgba(233,30,140,.12)}
+h1{margin:0;font-size:clamp(1.5rem,5vw,2.3rem);background:linear-gradient(90deg,var(--pk),var(--pk2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero{text-align:center;padding:28px 16px}.hero .em{font-size:3rem}
+label{display:block;font-weight:600;margin:12px 0 4px;font-size:.9rem}
+input{width:100%;padding:11px 14px;border:2px solid var(--line);border-radius:12px;font:inherit;background:var(--card);color:var(--ink)}
+input:focus{outline:none;border-color:var(--pk)}
+.btn{border:0;border-radius:999px;padding:11px 22px;font:inherit;font-weight:600;cursor:pointer;color:#fff;background:linear-gradient(90deg,var(--pk),var(--pk2));box-shadow:0 4px 12px rgba(233,30,140,.3)}
+.btn.warn{background:linear-gradient(90deg,#ff9800,var(--warn));color:#3b2a00}
+.btn.ghost{background:var(--soft);color:var(--pk);box-shadow:none}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.timer{background:var(--pk);color:#fff;border-radius:999px;padding:6px 16px;font-weight:700;font-variant-numeric:tabular-nums}
+.timer.low{background:var(--bad);animation:p 1s infinite}@keyframes p{50%{opacity:.6}}
+.grid{display:grid;grid-template-columns:1fr 250px;gap:16px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.passage{background:var(--soft);border-left:5px solid var(--pk);border-radius:12px;padding:12px 14px;margin-bottom:14px;font-size:.92rem;max-height:240px;overflow:auto}
+.opt{display:flex;gap:10px;width:100%;text-align:left;margin:8px 0;padding:11px 14px;border:2px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);font:inherit;cursor:pointer}
+.opt b{flex:none;width:28px;height:28px;border-radius:50%;background:var(--soft);color:var(--pk);display:grid;place-items:center}
+.opt.sel{border-color:var(--pk);background:var(--soft)}.opt.sel b{background:var(--pk);color:#fff}
+.opt.ok{border-color:var(--ok);background:rgba(31,170,107,.15)}.opt.no{border-color:var(--bad);background:rgba(229,72,77,.13)}
+.nav{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.n{aspect-ratio:1;border-radius:10px;border:2px solid var(--line);background:var(--none);color:var(--ink);font-weight:600;cursor:pointer}
+.n.a{background:var(--pk);color:#fff;border-color:var(--pk)}.n.d{background:var(--warn);color:#3b2a00;border-color:var(--warn)}
+.n.cur{outline:3px solid var(--ink);outline-offset:1px}
+.leg{display:flex;flex-wrap:wrap;gap:8px;font-size:.78rem;margin-top:10px}.leg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:4px;border:1px solid var(--line)}
+.row{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;margin-top:16px}
+.score{font-size:4rem;font-weight:800;color:var(--pk);line-height:1}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.stats span{background:var(--soft);padding:6px 14px;border-radius:999px;font-size:.85rem}
+.rev{border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0;background:var(--card)}
+.exp{background:var(--soft);border-radius:10px;padding:8px 12px;font-size:.9rem;margin-top:8px}
+footer{text-align:center;color:var(--mut);font-size:.85rem;padding:20px 8px}
+.hide{display:none!important}
+.cert{border:10px double var(--pk);border-radius:12px;padding:28px 20px;text-align:center;background:#fff;color:#3b1a2a;position:relative}
+.cert h2{font-size:2rem;margin:4px 0;color:#e91e8c;letter-spacing:2px}
+.cert .nm{font-size:1.9rem;font-weight:700;border-bottom:2px dashed #e91e8c;display:inline-block;padding:0 24px;margin:8px 0}
+.cert table{margin:14px auto;border-collapse:collapse;font-size:.9rem}.cert td{padding:4px 14px;border:1px solid #f7bcd6}
+.cert .mk{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin:10px 0}
+.cert .mk span{width:34px;font-size:.75rem;border-radius:6px;padding:2px 0;border:1px solid #f7bcd6}
+.cert .mk .t{background:#d6f5e6}.cert .mk .f{background:#ffdede}.cert .mk .k{background:#eee}
+@media print{body{background:#fff}.wrap>*:not(#certS){display:none!important}#certS .noprint{display:none!important}.card{box-shadow:none;border:0}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<!-- START -->
+<section id="startS" class="card hero">
+  <div class="em">🌸</div>
+  <h1>Pendalaman TKA Bahasa Inggris</h1>
+  <p style="color:var(--mut)">40 soal pilihan ganda · Waktu 60 menit · Bahasa Inggris Tingkat Lanjut Kelas XII</p>
+  <div style="max-width:420px;margin:auto;text-align:left">
+    <label>Nama Siswa</label><input id="fn" placeholder="Nama lengkap">
+    <label>Kelas</label><input id="fk" placeholder="Contoh: XII IPA 1">
+    <label>Peserta Didik (No. Peserta / NISN)</label><input id="fp" placeholder="Nomor peserta didik">
+    <label>Asal Sekolah</label><input id="fs" placeholder="Nama sekolah">
+    <p id="err" style="color:var(--bad);font-size:.85rem;min-height:1.2em"></p>
+    <button class="btn" style="width:100%" onclick="start()">Mulai Quiz ✨</button>
+  </div>
+</section>
+<!-- QUIZ -->
+<section id="quizS" class="hide">
+  <div class="top card" style="padding:12px 16px">
+    <div><b id="who"></b><br><small id="who2" style="color:var(--mut)"></small></div>
+    <div class="timer" id="tm">60:00</div>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <div style="color:var(--pk);font-weight:700;margin-bottom:8px" id="qno"></div>
+      <div id="pas" class="passage"></div>
+      <div id="qt" style="font-weight:600"></div>
+      <div id="opts"></div>
+      <div class="row">
+        <button class="btn ghost" id="bp" onclick="go(-1)">← Sebelumnya</button>
+        <button class="btn warn" id="bd" onclick="doubt()">❓ Ragu-ragu</button>
+        <button class="btn" id="bn" onclick="go(1)">Selanjutnya →</button>
+      </div>
+    </div>
+    <div class="card">
+      <b>Navigasi Soal</b>
+      <div class="nav" id="nav" style="margin-top:10px"></div>
+      <div class="leg"><span><i style="background:var(--pk)"></i>Dijawab</span><span><i style="background:var(--warn)"></i>Ragu-ragu</span><span><i style="background:var(--none)"></i>Belum</span></div>
+      <button class="btn" style="width:100%;margin-top:16px" onclick="finish(false)">Selesai &amp; Kumpulkan</button>
+    </div>
+  </div>
+</section>
+<!-- RESULT -->
+<section id="resS" class="hide">
+  <div class="card" style="text-align:center">
+    <div style="font-size:2.4rem">🎉</div>
+    <h1>Hasil Akhir</h1>
+    <div class="score" id="sc"></div>
+    <p id="rid" style="margin:8px 0"></p>
+    <div class="stats" id="st" style="justify-content:center"></div>
+    <div class="row" style="justify-content:center">
+      <button class="btn" onclick="showCert()">🏅 Lihat Sertifikat</button>
+      <button class="btn ghost" onclick="location.reload()">Ulangi Quiz</button>
+    </div>
+  </div>
+  <h2 style="color:var(--pk)">📖 Pembahasan Soal</h2>
+  <div id="rv"></div>
+</section>
+<!-- CERT -->
+<section id="certS" class="hide">
+  <div class="cert" id="cert"></div>
+  <div class="row noprint" style="justify-content:center">
+    <button class="btn" onclick="window.print()">🖨️ Cetak / Simpan PDF</button>
+    <button class="btn ghost" onclick="show('resS')">← Kembali ke Hasil</button>
+  </div>
+</section>
+</div>
+<footer>© Pengembang: <b>Eyin Tria Agustina, S.Pd</b></footer>
+
+<script>
+const P={
+t1:"Social media has become integral to teenagers’ lives. Prolonged use is linked to anxiety, depression and low self-esteem from unrealistic comparisons. A study showed that teens who use social media at night may damage their sleep and raise their risk of anxiety and depression. Platforms also expose teens to age-inappropriate content, and their design encourages addictive behavior, shorter attention spans and lower academic performance. Parents, educators and policymakers must collaborate to establish guidelines that promote healthy usage.",
+t2:"AI can improve healthcare, transportation, environmental protection and agriculture. However, it raises ethical concerns: bias can cause unfair results, and another issue is accountability—who is responsible if an AI system makes a mistake? AI also affects jobs and privacy. “In agriculture, it helps farmers use resources wisely and increase food production.”",
+t3:"<b>A Cosmic Misunderstanding.</b> Clare, a dedicated astronomer, saw a huge meteor heading to Earth. Her colleagues ignored her warnings because she was “always wrong”. She built a rocket and flew into space, only to find it was not a meteor but the <i>Space Guard</i>, a satellite that had stopped working. She fixed it. When she landed, her colleagues apologised: the repaired satellite had identified the real meteor and destroyed it. “You saved everyone!” Clare crossed her arms. “Next time, pick up the phone!”",
+t4:"<b>Should Video Games Be Considered a Sport?</b> Competitive gaming now offers millions in prizes. Opponents say gaming lacks physical activity and can make people inactive or addicted. Supporters say gamers train for hours, compete under pressure, develop quick reactions, strategy, teamwork and life skills, and e-sports are inclusive. Critics worry about screen dependence. In conclusion, whether gaming is a sport depends on how we define the word <i>sport</i>; it still demands skill, strategy, discipline and teamwork.",
+t5:"School uniforms should be mandatory because they create unity, reduce peer pressure and help students focus on learning. Studies (Bodine, 2003; Brunsma &amp; Rockquemore, 1998; Gentile &amp; Imberman, 2012) show schools with uniforms report less bullying and peer pressure, better attitudes, less tardiness and more engaged students. Students can still express themselves through art, music and writing. In conclusion: “They reduce bullying, lessen pressure, and help students focus on education. Uniforms are not a restriction but a step toward unity.”",
+t6:"<b>Sarah:</b> I just hit 2,000 followers on Instagram! <b>Emily:</b> How do you feel? <b>Sarah:</b> It’s a mix. It’s exciting, but lately I’ve been getting mean comments. <b>Emily:</b> That sounds like cyberbullying. Have you considered reporting or blocking those users? <b>Sarah:</b> I haven’t tried that yet. I was worried it might make things worse. <b>Emily:</b> It’s worth a shot. Also, talk to someone you trust, like a teacher or counselor. <b>Sarah:</b> Thanks. I’ll try to focus on the positive and not let the negativity get to me. <b>Emily:</b> Social media platforms have features to protect against bullying.",
+t7:"Environmental issues are now a global crisis. Climate change, mainly caused by burning fossil fuels and deforestation, brings extreme weather, melting glaciers and rising sea levels. Opponents of strict policies claim industries should expand freely. Some believe industries should not be overregulated because regulations might slow down production, but ignoring pollution raises medical costs. Skeptics say renewable energy is too expensive, yet solar and wind power are becoming more affordable and efficient.",
+t8:"<b>Use Social Media Wisely to Build a Positive Online Image.</b> A good online reputation helps our future because employers and universities check social media. Using it carefully protects privacy and safety, so avoid oversharing and disable location tags. Being positive shows good character. The “24-hour rule”: wait one day before posting if you are not sure it is appropriate, which prevents mistakes. Being professional, with proper spelling, grammar and polite language, builds trust and respect. In conclusion, social media is useful if we use it responsibly.",
+t9:"A poor tailor killed seven flies with one blow and made a belt: “Seven at one blow.” A giant saw the belt and, thinking he had killed seven men, was impressed. The tailor tricked the giant with cheese and a bird. Later a king set him three impossible tasks: defeat two giants, capture a unicorn and a boar. Using his wits and cunning, he tricked the giants into fighting each other and caught the others with clever tricks. The king offered him half the kingdom and his daughter’s hand.",
+t10:"<b>The Mirror.</b> Amelia visited an antique shop hoping to find something beautiful for her wall. She saw a large old mirror with an amazing frame carved like a two-headed snake. The owner warned her, “You don’t want that mirror,” but she took it home and hung it on her bedroom wall, where it looked elegant. One night her reflection moved without her moving. Both argued that they were the real Amelia. Amelia said the clock numbers on the reflection went the wrong way. The reflection smiled strangely and threw a heavy book at the mirror. The glass shattered.",
+a1:"Arrange the paragraphs into a meaningful text.<br>1) Joy and Sadness embark on a journey through Imagination Land and forgotten memories; Joy learns Sadness’s value.<br>2) In the end, they return to Headquarters and restore balance to Riley’s emotions.<br>3) Riley is an 11-year-old girl whose life is turned upside down when her family moves to San Francisco; five emotions control her mind.<br>4) A mishap ejects Joy and Sadness from Headquarters, leaving Fear, Disgust and Anger in charge.<br>5) Without Joy and Sadness, Riley struggles in her new environment while the two try to find their way back.",
+a2:"Arrange the paragraphs into a meaningful text.<br>1) Harry learns he is famous in the wizarding world and befriends Hermione and Ron.<br>2) Harry discovers Voldemort is seeking the Philosopher’s Stone.<br>3) Harry, an orphan living with his cruel aunt and uncle, learns on his eleventh birthday he is a wizard.<br>4) The trio uncovers a secret trapdoor and prevents Voldemort from stealing the Stone.<br>5) Harry returns to the Dursleys for the summer, knowing his adventures are just beginning.",
+a3:"Arrange the paragraphs into a meaningful text.<br>1) Tinker Bell becomes frustrated when she cannot fix the damage caused during preparations for spring; her gadgets fail.<br>2) Tinker Bell, a new fairy in Pixie Hollow, learns her talent is tinkering, which she finds unimportant.<br>3) Her tinkering proves essential when she creates a machine that repairs the spring preparations.<br>4) She embraces her talent, earns respect and looks forward to future adventures.<br>5) She befriends Vidia, Rosetta and others, but jealousy of their talents causes conflicts.",
+a4:"Arrange the paragraphs into a meaningful text.<br>1) One key aspect is minimizing waste through recycling, composting and reducing single-use plastics.<br>2) Sustainable living emphasizes reducing environmental impact and meeting current needs without compromising future generations.<br>3) Another element is energy conservation, using solar panels and efficient appliances.<br>4) By adopting sustainable practices, individuals help combat climate change and protect biodiversity.<br>5) It also supports local economies by purchasing from local farmers and businesses.",
+t11:"Social media shapes our mental health and self-esteem. Constant exposure to carefully curated, idealized lives distorts perception of reality and leads to inadequacy and jealousy. Its addictive nature, obsessive checking and FOMO worsen anxiety and depression. Cyber-bullying and negative comments also damage self-esteem. We should set boundaries, limit screen time and seek support to mitigate the negative impact.",
+t12:"<b>Social media is bad for your mental health.</b> Too much time online causes loneliness, anxiety and depression. Cyberbullying has increased, and “because people can hide behind screens, it becomes easier to be cruel without facing consequences.” Fake news spreads quickly and addiction reduces productivity. In conclusion: “We must learn to use it responsibly and focus on our mental and emotional health. Schools, families and governments should educate people about safe and positive online behavior. Only by using social media wisely can we build a healthier digital society.”",
+t13:"Technology is crucial for industrial development. <b>Paragraph 2:</b> Technology promotes greater discoveries, because industrial development relies on discoveries and technology makes them viable. <b>Paragraph 3:</b> Efficiency is vital. Technology makes work easier. “The advancement of technology is making it possible for an industry to work faster than before. <u>This</u> means that employees in an industry get equipped technologically and perform their tasks much faster.”",
+t14:"<b>Plastic Waste Management in Indonesia.</b> Indonesia is the second-largest contributor of plastic waste to the ocean after China. Several cities have banned single-use plastic bags, and the government pledged to reduce ocean plastic waste by 70% before 2025. Yet plastic consumption continues to rise, household waste separation is rare and enforcement is weak: many small shops still provide plastic bags because monitoring is limited. Optimists believe stronger regulations, education and technology can make Indonesia a leader; skeptics argue the crisis will worsen without addressing corruption, infrastructure and public behavior.",
+t15:"<b>The Art of Chinese Dumplings.</b> Food blogger Roxanne wanted the best dumpling recipe in China, from Mr Chen. He asked her to mow his lawn for a whole year. Her stay in China taught her about its history, culture and food. After one year, Mr Chen said, “I’ve already revealed it. My secret is hard work. I’ve made dumplings over a hundred thousand times. Dedication, practice and time. Now you truly understand this secret.”"
+};
+const Q=[
+["t1","According to the passage, what is one effect of teenagers using social media late at night?",["They may spend more time communicating with their friends online.","They are likely to experience stronger feelings of happiness and joy.","They can increase their popularity and number of online followers.","They may suffer sleep problems and higher anxiety or depression.","They might develop better focus and improved academic results."],3,"Teks menyebut remaja yang memakai media sosial malam hari dapat merusak tidur dan meningkatkan risiko kecemasan dan depresi."],
+["t1","What can be inferred about the role of parents and educators regarding teenagers’ social media use? They should …",["collaborate to establish guidelines for healthy usage.","promote the use of multiple social media platforms.","ban teenagers from using social media entirely.","ignore teenagers’ social media activities.","encourage unlimited use of social media."],0,"Paragraf terakhir: orang tua, pendidik, dan pembuat kebijakan harus bekerja sama menyusun pedoman penggunaan yang sehat."],
+["t1","Which of the following statements is incorrect based on the passage?",["Social media exposure can lead to low self-esteem and anxiety in teens.","Teenagers may face addiction because platforms encourage long usage.","Every teenager who uses social media experiences mental disorders.","Inappropriate online content can negatively affect young users’ minds.","Parents and educators should guide teens to use social media wisely."],2,"Teks hanya menyebut “dapat” berdampak. Kata “every teenager” adalah generalisasi berlebihan sehingga pernyataan C salah."],
+["t2","“Another issue is <b>accountability</b>…” What is the closest meaning of “accountability”?",["The freedom to work without control","The ability to create new inventions","The fairness of human relationships","The process of managing information","Responsibility for actions or decisions"],4,"Konteks kalimat: “who is responsible if an AI system makes a mistake?” Accountability = tanggung jawab atas tindakan atau keputusan."],
+["t2","The word “it” in the sentence “In agriculture, it helps farmers use resources wisely…” refers to …",["The environment","Renewable energy","Farming resources","Artificial intelligence","Agricultural products"],3,"Seluruh paragraf membahas bagaimana AI membantu berbagai bidang, sehingga “it” merujuk pada Artificial Intelligence."],
+["t3","What can be inferred about Clare’s character from the story?",["She is careless and often ignores other people’s advice.","She is determined and brave, never giving up easily.","She is selfish and never listens to her colleagues.","She is doubtful and afraid to take bold decisions.","She is kind but too shy to speak her opinion."],1,"Clare menelepon 50 kali, membangun roket, dan terbang ke luar angkasa meski tidak dipercaya: ia gigih dan berani."],
+["t3","What moral value can be learned from Clare’s experience?",["Teamwork always brings better results than working alone.","Trust others only when they have the same opinion as you.","Giving up is better than being criticized by other people.","Keep believing in yourself even when others doubt you.","Success depends more on luck than on responsibility."],3,"Meski diragukan rekan-rekannya, Clare tetap yakin dan bertindak, dan akhirnya terbukti bermanfaat."],
+["t4","What is the main idea of the text?",["Gaming cannot be compared to any traditional sport.","Playing video games only provides entertainment value.","Video games should never be recognized as a real sport.","Gaming offers prizes but causes negative health impacts.","The debate continues on whether gaming qualifies as sport."],4,"Teks menyajikan argumen pro dan kontra dan menyimpulkan bahwa jawabannya bergantung pada definisi “sport”."],
+["t4","What is the writer’s attitude toward video games as sports?",["Completely against recognizing gaming as a real sport.","Neutral but acknowledges both sides of the discussion.","Highly supportive and sees no drawbacks in gaming.","Uninterested and unsure about the topic of e-sports.","Negative and critical of modern competitive gaming."],1,"Penulis memaparkan pendapat pendukung dan penentang tanpa memihak: sikapnya netral."],
+["t4","The word “competitive” in “competitive gaming now offers millions in prizes” is closest in meaning to …",["Cooperative","Relaxed","Rivalrous","Passive","Simple"],2,"Competitive = bersifat bersaing; sinonim terdekatnya adalah rivalrous."],
+["t5","What can be inferred about the author’s opinion on school uniforms?",["The author believes uniforms can harm students’ individuality.","The author supports uniforms because they create equality.","The author disagrees that uniforms improve school behavior.","The author is uncertain whether uniforms are truly useful.","The author thinks uniforms only benefit wealthy students."],1,"Penulis menyatakan seragam harus wajib karena menciptakan kesatuan dan kesetaraan."],
+["t5","The word “they” in “They reduce bullying, lessen pressure, and help students focus…” refers to …",["Students who wear the same clothes every day.","Teachers who promote order and responsibility.","Schools that implement new learning programs.","School uniforms that promote equality and focus.","Parents who encourage discipline at home."],3,"Subjek kalimat sebelumnya dan seluruh teks adalah school uniforms."],
+["t6","Why has Sarah hesitated to report or block the negative commenters? She …",["doesn’t know how to do it","thinks it’s against platform rules","fears it might escalate the situation","believes the comments are justified","wants to keep her follower count high"],2,"Sarah berkata, “I was worried it might make things worse” = takut situasi memburuk (escalate)."],
+["t6","How does Sarah plan to handle the situation moving forward? She plans to …",["ignore all comments","quit social media","create a new account","focus on positive interactions","confront the negative commenters"],3,"Sarah: “I’ll try to focus on the positive and not let the negativity get to me.”"],
+["t7","Which of the following are effects of climate change mentioned in the passage?",["Lower temperatures and reduced rainfall","Melting glaciers and rising sea levels","Increased animal population","Stable weather conditions","Growth of more forests"],1,"Teks menyebut cuaca ekstrem, gletser mencair, dan naiknya permukaan laut."],
+["t7","According to the text, why do some people oppose strict environmental regulations? Because they …",["believe it will slow down industrial production.","think regulations are not strict enough.","support renewable energy completely.","believe pollution is beneficial.","want to stop climate change."],0,"Teks: “regulations might slow down production.”"],
+["t8","What can be concluded from the text?",["Using social media wisely helps create a good reputation.","Sharing private information online is always a good idea.","Employers never check social media before hiring people.","Social media is dangerous and should never be used again.","Everyone must delete all their social media permanently."],0,"Kesimpulan teks: bijak bermedia sosial membangun kesan dan reputasi yang baik."],
+["t8","According to the text, what is the purpose of the “24-hour rule”?",["To stop people from using social media too frequently.","To give users time to reflect before posting something.","To make social media accounts more professional-looking.","To remind users to update their privacy settings daily.","To allow people to post content at the same exact time."],1,"Aturan 24 jam: menunggu sehari sebelum memposting agar tidak terjadi kesalahan."],
+["t8","Which statement is TRUE based on the text?",["Social media always causes problems and must be avoided.","It is safe to post personal details such as phone numbers.","Polite and professional posts can build respect and trust.","Oversharing helps people become more popular online.","Grammar and spelling are not important for social media."],2,"Paragraf terakhir menyebut bahasa yang sopan dan profesional membangun kepercayaan dan rasa hormat."],
+["t9","Which best explains why the giant was initially impressed by the tailor?",["He witnessed the tailor kill seven men in battle.","He misunderstood the meaning of the tailor’s belt inscription.","A group of villagers told the giant about the tailor’s legendary strength.","The tailor performed an act of great physical strength before meeting the giant.","The tailor demonstrated his intelligence by solving a riddle."],1,"Sang raksasa mengira penjahit membunuh tujuh orang sekaligus, padahal itu tujuh lalat: ia salah paham."],
+["t9","Why was the tailor ultimately able to win half the kingdom and marry the princess?",["He used his wits and deception to accomplish seemingly impossible tasks.","He was actually a prince in disguise.","He defeated the king’s enemies through sheer physical strength.","The princess fell in love with him and convinced the king.","The giants, unicorn, and boar all swore loyalty to him."],0,"Ia menyelesaikan tiga tugas mustahil dengan akal dan kelicikan."],
+["t10","Why did Amelia decide to buy the mirror from the antique shop?",["She liked its design and wanted it for her bedroom wall.","She believed the mirror could bring her good fortune.","The dealer told her the mirror was very expensive.","She wanted to sell the mirror later for a high price.","Her friend advised her to buy the mirror that day."],0,"Amelia mencari sesuatu yang indah untuk dindingnya dan terpikat bingkai uniknya."],
+["t10","What is the main conflict faced by Amelia in the story?",["She argues with the dealer about the price of the mirror.","She feels frightened when her reflection starts to move.","She breaks the mirror while cleaning it in her bedroom.","She dreams about another world inside the old mirror.","She loses her reflection after buying the antique mirror."],1,"Konflik utama muncul ketika bayangannya bergerak sendiri dan mereka berdebat siapa yang asli."],
+["a1","Arrange the paragraphs into a sequential order.",["3-4-5-1-2","4-3-5-1-2","3-4-1-2-5","4-5-3-2-1","5-3-4-1-2"],0,"Pengenalan Riley (3) → insiden (4) → Riley kesulitan (5) → perjalanan (1) → akhir (2)."],
+["a2","Arrange the paragraphs into a sequential order.",["3-2-1-4-5","3-1-2-5-4","1-2-3-5-4","1-3-5-4-2","3-1-2-4-5"],4,"Harry yatim (3) → terkenal &amp; berteman (1) → Voldemort mencari Batu (2) → pintu jebakan (4) → kembali ke Dursley (5)."],
+["a3","Arrange the paragraphs into a sequential order.",["2-5-4-3-1","2-4-1-3-5","2-3-5-4-1","2-5-1-3-4","2-3-1-4-5"],3,"Pengenalan (2) → konflik dengan teman (5) → frustrasi (1) → mesin berhasil (3) → menerima bakatnya (4)."],
+["a4","Arrange the paragraphs into a sequential order.",["2-1-3-4-5","3-1-2-5-4","2-1-3-5-4","3-1-4-2-5","2-3-4-5-1"],2,"Definisi (2) → limbah (1) → energi (3) → ekonomi lokal (5) → kesimpulan (4)."],
+["t11","What is the main focus of the passage?",["The benefits of social media.","Cyber-bullying on social media.","The addictive nature of social media.","Setting boundaries in online interactions.","The penalty of excessive social media use."],4,"Seluruh paragraf membahas dampak buruk penggunaan media sosial berlebihan terhadap kesehatan mental dan harga diri."],
+["t11","What is the primary concern regarding the content shared on social media?",["Encourages hurtful behavior which is exhibited in real-life.","Can create an imprecise perception of reality.","Eliminates inadequacy and jealousy.","Is always truthful and detrimental.","Promotes mental well-being."],1,"Orang hanya menampilkan momen terbaik sehingga muncul persepsi realitas yang terdistorsi (imprecise)."],
+["t12","What solution does the writer suggest for reducing the negative effects of social media?",["People should stop using social media completely forever.","Users should use social media wisely and responsibly.","Governments should close all popular online platforms.","Teenagers should spend more time comparing profiles.","People should post more personal details and pictures."],1,"Kesimpulan: “Only by using social media wisely can we build a healthier… society.”"],
+["t12","The phrase “hide behind screens” means …",["Using devices secretly to avoid responsibility.","Repairing a computer or fixing a broken screen.","Watching television shows late in the evening.","Playing online games during work or school time.","Working online to improve technical digital skills."],0,"Orang bisa bersembunyi di balik layar sehingga mudah kejam tanpa konsekuensi: menghindari tanggung jawab."],
+["t13","What is the main idea of the second paragraph? Technology …",["promotes greater discoveries","makes work easier for people","can cut off unnecessary costs","changes the world of industries","is important to improve productivity"],0,"Kalimat utama paragraf 2: technology promotes greater discoveries."],
+["t13","The word “this” in the paragraph 3 sentence refers to …",["advancement","technology","employees","industries","product"],0,"“This” merujuk ke seluruh gagasan kalimat sebelumnya: kemajuan (advancement) teknologi membuat industri bekerja lebih cepat."],
+["t14","Which statement is a fact according to the text?",["Plastic consumption is decreasing across Indonesia.","Recycling has eliminated all plastic waste in Indonesia.","Indonesia is the 2nd largest giver of plastic waste to the sea.","Public behavior is no longer a problem in waste management.","Symbolic policies are enough to solve the plastic waste crisis."],2,"Fakta bisa dibuktikan: Indonesia penyumbang sampah plastik ke laut terbesar kedua setelah China."],
+["t14","Which statement is an opinion expressed in the text?",["Plastic enters rivers and seas every year.","Several cities have banned single-use plastic bags.","Waste separation at the household level is still rare.","Optimists believe Indonesia can lead in waste management.","The regulation vowed to lessen plastic waste by 70% before 2025."],3,"“Optimists believe…” adalah keyakinan/pendapat, bukan fakta yang terbukti."],
+["t14","What can be inferred from the text?",["All shops comply with plastic bag bans.","Recycling systems are fully effective in rural areas.","Communities are unaware of plastic waste dangers.","Plastic consumption is steadily declining nationwide.","Several shops still utilize plastic despite existing prohibition."],4,"Teks: larangan ada, tetapi banyak toko kecil tetap memberi kantong plastik karena pengawasan terbatas."],
+["t14","Which evaluation about the government’s efforts is best supported by the text?",["The government has no role in plastic waste management.","Regulations are present but enforcement is often fragile.","Plastic bag bans have completely solved the problem.","Environmentalists fully support current policies.","Infrastructure is no longer a major issue."],1,"Teks: regulasi sering tidak konsisten dan penegakannya lemah."],
+["t15","What is the main idea of the story about Roxanne and Mr. Chen?",["A food critic discovers new dishes while travelling in Europe.","A travel blogger learns that true mastery requires hard work.","An old man gives a young woman his secret recipe for free.","A tourist opens a restaurant after learning to cook dumplings.","A young chef becomes famous by copying another cook’s recipe."],1,"Rahasia Mr Chen adalah kerja keras; Roxanne memahaminya setelah setahun berusaha."],
+["t15","What can be concluded from Roxanne’s experience in China?",["She understands that cooking is easier than she first thought.","She learns that recipes are always better when written down.","She realizes that patience and practice lead to excellence.","She discovers that Mr. Chen never really liked dumplings.","She believes that travel is more important than discipline."],2,"Ia belajar bahwa dedikasi, latihan, dan waktu (kesabaran dan latihan) menghasilkan keunggulan."],
+["t15","The word “dedication” in Mr. Chen’s explanation means …",["Strong commitment and effort to achieve something.","The act of helping other people without any reason.","A special moment to celebrate success with others.","The ability to cook many dishes at the same time.","A plan to sell food recipes for a lot of money."],0,"Dedication = komitmen dan usaha yang kuat untuk mencapai sesuatu."]
+];
+const TOTAL=Q.length,DUR=60*60,L="ABCDE";
+let ans=Array(TOTAL).fill(-1),dbt=Array(TOTAL).fill(false),cur=0,left=DUR,tmr,info={},scoreData={};
+const $=id=>document.getElementById(id);
+function show(id){["startS","quizS","resS","certS"].forEach(s=>$(s).classList.toggle("hide",s!==id));window.scrollTo(0,0)}
+function start(){
+  info={n:$("fn").value.trim(),k:$("fk").value.trim(),p:$("fp").value.trim(),s:$("fs").value.trim()};
+  if(!info.n||!info.k||!info.p||!info.s){$("err").textContent="Mohon lengkapi semua data terlebih dahulu.";return}
+  $("who").textContent=info.n;$("who2").textContent=info.k+" · "+info.s;
+  show("quizS");render();tick();tmr=setInterval(tick,1000);
+}
+function fmt(s){return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+function tick(){$("tm").textContent="⏱ "+fmt(left);$("tm").classList.toggle("low",left<=300);if(left--<=0)finish(true)}
+function render(){
+  const q=Q[cur];
+  $("qno").textContent="Soal "+(cur+1)+" dari "+TOTAL;
+  $("pas").innerHTML=P[q[0]];$("qt").innerHTML=q[1];
+  $("opts").innerHTML=q[2].map((o,i)=>`<button class="opt ${ans[cur]===i?"sel":""}" onclick="pick(${i})"><b>${L[i]}</b><span>${o}</span></button>`).join("");
+  $("bp").disabled=cur===0;$("bn").disabled=cur===TOTAL-1;
+  $("bd").textContent=dbt[cur]?"✔ Batal Ragu-ragu":"❓ Ragu-ragu";
+  $("nav").innerHTML=Q.map((_,i)=>`<button class="n ${dbt[i]?"d":ans[i]>=0?"a":""} ${i===cur?"cur":""}" onclick="jump(${i})">${i+1}</button>`).join("");
+}
+function pick(i){ans[cur]=i;render()}
+function doubt(){dbt[cur]=!dbt[cur];render()}
+function go(d){cur=Math.max(0,Math.min(TOTAL-1,cur+d));render()}
+function jump(i){cur=i;render()}
+function finish(auto){
+  const un=ans.filter(a=>a<0).length,dc=dbt.filter(Boolean).length;
+  if(!auto&&!confirm("Kumpulkan jawaban sekarang?\nBelum dijawab: "+un+" soal · Ragu-ragu: "+dc+" soal"))return;
+  clearInterval(tmr);
+  const ben=Q.filter((q,i)=>ans[i]===q[3]).length,sal=TOTAL-un-ben;
+  scoreData={ben,sal,un,nilai:Math.round(ben/TOTAL*100),used:DUR-Math.max(left,0)};
+  results();
+}
+function pred(n){return n>=90?"Istimewa":n>=80?"Sangat Baik":n>=70?"Baik":n>=60?"Cukup":"Perlu Belajar Lagi"}
+function results(){
+  const d=scoreData;
+  $("sc").textContent=d.nilai;
+  $("rid").innerHTML=`<b>${info.n}</b><br>Kelas ${info.k} · ${info.s}<br>Peserta Didik: ${info.p}<br><span style="color:var(--pk);font-weight:700">${pred(d.nilai)}</span>`;
+  $("st").innerHTML=`<span>✅ Benar: ${d.ben}</span><span>❌ Salah: ${d.sal}</span><span>⚪ Kosong: ${d.un}</span><span>⏱ Waktu: ${fmt(d.used)}</span>`;
+  $("rv").innerHTML=Q.map((q,i)=>{
+    const st=ans[i]<0?"⚪ Tidak dijawab":ans[i]===q[3]?"✅ Benar":"❌ Salah";
+    return `<div class="rev"><b style="color:var(--pk)">Soal ${i+1}</b> · ${st}<div style="margin:6px 0;font-weight:600">${q[1]}</div>`+
+    q[2].map((o,j)=>`<div class="opt ${j===q[3]?"ok":j===ans[i]?"no":""}" style="cursor:default"><b>${L[j]}</b><span>${o}${j===q[3]?" ✔":""}${j===ans[i]&&j!==q[3]?" (jawabanmu)":""}</span></div>`).join("")+
+    `<div class="exp">💡 <b>Pembahasan:</b> Kunci jawaban <b>${L[q[3]]}</b>. ${q[4]}</div></div>`}).join("");
+  show("resS");
+}
+function showCert(){
+  const d=scoreData,tgl=new Date().toLocaleDateString("id-ID",{day:"numeric",month:"long",year:"numeric"});
+  $("cert").innerHTML=`<div style="font-size:2.4rem">🌸</div>
+  <div style="letter-spacing:3px;font-weight:600">SERTIFIKAT HASIL QUIZ</div>
+  <h2>Pendalaman TKA Bahasa Inggris</h2>
+  <div>diberikan kepada</div>
+  <div class="nm">${info.n}</div>
+  <div>Kelas ${info.k} · Peserta Didik: ${info.p}<br>${info.s}</div>
+  <div style="margin:12px 0">dengan nilai akhir</div>
+  <div style="font-size:3.2rem;font-weight:800;color:#e91e8c;line-height:1">${d.nilai}</div>
+  <div style="font-weight:700">${pred(d.nilai)}</div>
+  <table><tr><td>Jumlah Soal</td><td>${TOTAL}</td><td>Jawaban Benar</td><td>${d.ben}</td></tr>
+  <tr><td>Jawaban Salah</td><td>${d.sal}</td><td>Tidak Dijawab</td><td>${d.un}</td></tr>
+  <tr><td>Waktu Pengerjaan</td><td>${fmt(d.used)}</td><td>Tanggal</td><td>${tgl}</td></tr></table>
+  <div style="font-size:.8rem">Rincian per nomor (✔ benar · ✘ salah · – kosong)</div>
+  <div class="mk">${Q.map((q,i)=>`<span class="${ans[i]<0?"k":ans[i]===q[3]?"t":"f"}">${i+1}${ans[i]<0?"–":ans[i]===q[3]?"✔":"✘"}</span>`).join("")}</div>
+  <div style="margin-top:18px;font-size:.9rem">Pengembang Quiz<br><br><b>Eyin Tria Agustina, S.Pd</b></div>`;
+  show("certS");
+}
+</script>
+</body>
+</html>
